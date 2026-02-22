@@ -6,6 +6,7 @@ dbt_aviation: # Doit être identique au nom dans dbt_project.yml
       method: service-account
       project: flight-data-pipeline-488200
       dataset: dbt_aviation
+      location: EU  
       threads: 1
       keyfile: credentials.json # Le fichier qu'on génère via GitHub Secrets
       priority: interactive
