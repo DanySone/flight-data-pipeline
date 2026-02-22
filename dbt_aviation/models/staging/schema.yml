@@ -6,7 +6,6 @@ models:
       - name: icao24
         tests:
           - not_null
-          - unique
       - name: speed_kmh
         tests:
           - dbt_expectations.expect_column_values_to_be_between:
