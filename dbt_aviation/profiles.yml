@@ -5,7 +5,7 @@ dbt_aviation: # Doit être identique au nom dans dbt_project.yml
       type: bigquery
       method: service-account
       project: flight-data-pipeline-488200
-      dataset: dbt_aviation
+      dataset: realtime_states
       location: EU  
       threads: 1
       keyfile: credentials.json # Le fichier qu'on génère via GitHub Secrets
