@@ -5,7 +5,7 @@ import time
 
 # Configuration BigQuery
 client = bigquery.Client.from_service_account_json('credentials.json')
-TABLE_ID = "ton-projet.raw_aviation.realtime_states"
+TABLE_ID = "flight-data-pipeline-488200.raw_aviation.realtime_states"
 
 def fetch_opensky_data():
     # API OpenSky (Public)
@@ -23,6 +23,7 @@ def fetch_opensky_data():
     
     df = pd.DataFrame(data['states'], columns=columns)
     df['ingested_at'] = pd.Timestamp.now() # Pour le suivi dans BigQuery
+    df['sensors'] = df['sensors'].astype(str)
     return df
 
 def load_to_bigquery(df):

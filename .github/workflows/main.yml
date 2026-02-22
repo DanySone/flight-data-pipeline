@@ -27,3 +27,12 @@ jobs:
         run: |
           echo $GCP_SA_KEY > credentials.json
           python scripts/extract_flights.py
+
+      - name: Run dbt
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          pip install dbt-bigquery
+          dbt deps # Pour installer dbt_expectations
+          dbt run --profiles-dir .
+          dbt test --profiles-dir .
