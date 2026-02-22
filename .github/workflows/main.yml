@@ -1,0 +1,29 @@
+name: Aviation Ingestion
+
+on:
+  schedule:
+    - cron: '0 * * * *' # S'exécute toutes les heures
+  workflow_dispatch:      # Permet de le lancer manuellement
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas google-cloud-bigquery requests pyarrow
+
+      - name: Run Ingestion
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }} # On utilise un secret GitHub
+        run: |
+          echo $GCP_SA_KEY > credentials.json
+          python scripts/extract_flights.py
