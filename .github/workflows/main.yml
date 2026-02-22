@@ -33,7 +33,8 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
           cd dbt_aviation
+          echo "$GCP_SA_KEY" > credentials.json
           pip install dbt-bigquery
-          dbt deps # Pour installer dbt_expectations
+          dbt deps
           dbt run --profiles-dir .
           dbt test --profiles-dir .
