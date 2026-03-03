@@ -5,7 +5,7 @@ dbt_aviation:
       type: bigquery
       method: service-account
       project: flight-data-pipeline-488200
-      dataset: dbt_aviation 
+      dataset: dbt_aviation  # <--- CHANGE CECI (au lieu de realtime_states)
       location: EU  
       threads: 1
       keyfile: credentials.json

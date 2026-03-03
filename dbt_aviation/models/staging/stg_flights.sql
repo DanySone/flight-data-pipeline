@@ -27,6 +27,7 @@ renamed as (
       and latitude is not null
       and velocity > 0 
       and velocity < 1100
+      and ingested_at >= timestamp_sub(current_timestamp(), interval 2 hour)
 )
 
 select * from renamed
