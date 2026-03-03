@@ -1,3 +1,8 @@
+{{ config(
+    materialized='table',
+    full_refresh=true
+) }}
+
 with source as (
     select * from {{ source('raw_aviation', 'realtime_states') }}
 ),
