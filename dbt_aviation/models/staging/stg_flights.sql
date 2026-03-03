@@ -25,6 +25,8 @@ renamed as (
     -- On filtre les données sans position GPS
     where longitude is not null 
       and latitude is not null
+      and velocity > 0 
+      and velocity < 1100
 )
 
 select * from renamed
